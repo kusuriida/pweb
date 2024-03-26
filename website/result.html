@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengguna</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 100px;
+            /* Menambahkan gambar latar belakang */
+            background-image: url('bglogin.jpg');
+            background-size: 1720px;
+            background-repeat: no-repeat;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            /* Menambahkan opasitas untuk membuat konten lebih terbaca */
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        h1 {
+            text-align: center;
+        }
+        .profile-info {
+            margin-bottom: 15px;
+        }
+        .profile-info label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Profil Pengguna</h1>
+        <div class="profile-info">
+            <label>Nama Lengkap:</label>
+            <span id="namaLengkap"></span>
+        </div>
+        <div class="profile-info">
+            <label>Email:</label>
+            <span id="email"></span>
+        </div>
+        <div class="profile-info">
+            <label>Nomor Telepon:</label>
+            <span id="nomorTelepon"></span>
+        </div>
+        <div class="profile-info">
+            <label>Tanggal Lahir:</label>
+            <span id="tanggalLahir"></span>
+        </div>
+        <div class="profile-info">
+            <label>Jenis Kelamin:</label>
+            <span id="jenisKelamin"></span>
+        </div>
+        <div class="profile-info">
+            <label>Status Perkawinan:</label>
+            <span id="statusPerkawinan"></span>
+        </div>
+        <div class="profile-info">
+            <label>Alamat:</label>
+            <span id="alamat"></span>
+        </div>
+    </div>
+
+    <script>
+        // Mendapatkan nilai dari URL query string
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        // Mengisi elemen-elemen HTML dengan nilai dari URL query string
+        document.getElementById("namaLengkap").innerText = urlParams.get("nama");
+        document.getElementById("email").innerText = urlParams.get("email");
+        document.getElementById("nomorTelepon").innerText = urlParams.get("telepon");
+        document.getElementById("tanggalLahir").innerText = urlParams.get("lahir");
+        document.getElementById("jenisKelamin").innerText = urlParams.get("kelamin");
+        document.getElementById("statusPerkawinan").innerText = urlParams.get("status");
+        document.getElementById("alamat").innerText = urlParams.get("alamat");
+    </script>
+</body>
+</html>

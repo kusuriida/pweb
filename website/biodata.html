@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Biodata</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        background-image: url('bgbiodata.jpg'); /* Ubah 'background.jpg' dengan lokasi dan nama file gambar Anda */
+        background-size: cover;
+        background-position: center;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: rgba(255, 255, 255, 0.8); /* Tambahkan opasitas ke background agar form lebih mudah dibaca */
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: bold;
+        display: block;
+    }
+    .form-group input[type="text"], 
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="date"],
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+    }
+    .form-group button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .form-group button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Form Biodata</h2>
+    <form id="biodataForm" action="result.html" method="GET">
+        <div class="form-group">
+            <label for="nama">Nama Lengkap:</label>
+            <input type="text" id="name" name="nama" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="telepon">Nomor Telepon:</label>
+            <input type="tel" id="phone" name="telepon" required>
+        </div>
+        <div class="form-group">
+            <label for="lahir">Tanggal Lahir:</label>
+            <input type="date" id="birthdate" name="lahir" required>
+        </div>
+        <div class="form-group">
+            <label for="kelamin">Jenis Kelamin:</label>
+            <select id="gender" name="kelamin" required>
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="male">Laki-laki</option>
+                <option value="female">Perempuan</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="status">Status Perkawinan:</label>
+            <select id="marital-status" name="status" required>
+                <option value="">Pilih Status Perkawinan</option>
+                <option value="single">Single</option>
+                <option value="married">Menikah</option>
+                <option value="divorced">Cerai</option>
+                <option value="widowed">Duda/Janda</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="alamat">Alamat:</label>
+            <textarea id="address" name="alamat" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
