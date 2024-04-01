@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('bgcp.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .edit-profile-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .edit-profile-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-profile-container">
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Nomor Telepon:</label>
+                <input type="text" id="phone" value="" required>
+            </div>
+            <button type="button" onclick="saveProfile()">Done</button>
+        </form>
+    </div>
+
+    <script>
+        // Ambil data dari Local Storage untuk ditampilkan di form
+        document.getElementById("username").value = localStorage.getItem("username");
+        document.getElementById("name").value = localStorage.getItem("name");
+        document.getElementById("email").value = localStorage.getItem("email");
+        document.getElementById("phone").value = localStorage.getItem("phone");
+
+        function saveProfile() {
+            // Ambil data dari form
+            var username = document.getElementById("username").value;
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+
+            // Simpan data ke Local Storage
+            localStorage.setItem("username", username);
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
+            localStorage.setItem("phone", phone);
+
+            // Redirect ke halaman profil
+            window.location.href = "profile.html";
+        }
+    </script>
+</body>
+</html>
