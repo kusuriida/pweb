@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+     <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        <div class="profile-info">
+            <label for="username">Username:</label>
+            <p id="username"></p>
+        </div>
+        <div class="profile-info">
+            <label for="name">Nama: </label>
+            <p id="name"></p>
+        </div>
+        <div class="profile-info">
+            <label for="email">Email:</label>
+            <p id="email"></p>
+        </div>
+        <div class="profile-info">
+            <label for="phone">Nomor Telepon: </label>
+            <p id="phone"></p>
+        </div>
+        <a href="beranda.html" class="back-btn">Kembali ke Beranda</a>
+        <a href="edit_profile.html" class="edit-profile-btn">Edit Profile</a>
+    </div>
+
+    <script>
+        
+        var username = localStorage.getItem("username");
+        var name = localStorage.getItem("name");
+        var email = localStorage.getItem("email");
+        var phone = localStorage.getItem("phone");
+
+        
+        document.getElementById("username").innerText = username;
+        document.getElementById("name").innerText = name;
+        document.getElementById("email").innerText = email;
+        document.getElementById("phone").innerText = phone;
+    </script>
+</body>
+</html>
