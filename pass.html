@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Setting</title>
+    <style>
+        body {
+            background-image: url('pass.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .password-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .password-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="login.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+    <div class="password-container">
+        <h2>Set Username & Password</h2>
+        <form id="passForm">
+            <div class="form-group">
+                <label for="masterkey">master Key:</label>
+                <input type="password" id="masterkey" required>
+            </div>
+            <div class="form-group">
+                <label for="newUsername">New Username:</label>
+                <input type="text" id="newUsername" required>
+            </div>
+            <div class="form-group">
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" required>
+            </div>
+            <button type="button" class="submit-btn" onclick="saveCredentials()">Save</button>
+        </form>
+    </div>
+
+    <script>
+        function saveCredentials() {
+            // Ambil data dari form
+            var masterkey = document.getElementById("masterkey").value;
+            var newUsername = document.getElementById("newUsername").value;
+            var newPassword = document.getElementById("newPassword").value;
+
+            // Periksa kata kunci
+            if (masterkey !== "wahyuganteng") {
+                alert("masterkey is incorrect.");
+                return;
+            }
+
+            // Simpan data ke localStorage
+            localStorage.setItem("username", newUsername);
+            localStorage.setItem("password", newPassword);
+
+            // Redirect ke halaman login
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
