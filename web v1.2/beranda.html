@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="beranda.css">
+    <title>Fullscreen Slides with GSAP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="slides-container">
+    <div class="slide" id="slide-1">
+     
+       
+    </div>
+    <div class="slide" id="slide-2">
+        <h1 >OUR HEADPHONE COLLECTION</h1> 
+              <div class="wrapper">
+     <div class="items">
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/1.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/2.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/3.png)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/4.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/5.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/6.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/7.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/8.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/9.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/10.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/11.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/12.jpg)"></div>
+    <div class="item" tabindex="0" style="background-image: url(fotoberanda/13.jpg)"></div>
+    </div> 
+        </div>
+    
+    </div>
+    <div class="slide" id="slide-3">
+        <div class="centered">
+
+        </div>
+    </div>
+    <div class="slide" id="slide-4">
+        <div class="centered">
+            <div class="container">
+                <h1>Review Publik</h1>
+                <div class="reviews">
+                    <div class="review">
+                        <div class="reviewer-photo">
+                            <img src="ban.jpg" alt="">
+                        </div>
+                        <div class="review-content">
+                            <h2>Jane Doe</h2>
+                            <p>"Layanan yang sangat memuaskan! Pengiriman cepat dan produk berkualitas."</p>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="reviewer-photo">
+                            <img src="phe.jpeg" alt="">
+                        </div>
+                        <div class="review-content">
+                            <h2>John Smith</h2>
+                            <p>"Produk sesuai dengan deskripsi. Harga terjangkau. Akan beli lagi."</p>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="reviewer-photo">
+                            <img src="uni.jpg" alt="">
+                        </div>
+                        <div class="review-content">
+                            <h2>Sarah Johnson</h2>
+                            <p>"Pelayanan pelanggan sangat membantu dan ramah. Sangat direkomendasikan!"</p>
+                        </div>
+                    </div>
+                    <!-- Duplikasi review untuk infinite scroll -->
+                    <div class="review">
+                        <div class="reviewer-photo">
+                            <img src="ban.jpg" alt="Foto Reviewer">
+                        </div>
+                        <div class="review-content">
+                            <h2>Jane Doe</h2>
+                            <p>"Layanan yang sangat memuaskan! Pengiriman cepat dan produk berkualitas."</p>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="reviewer-photo">
+                            <img src="phe.jpeg" alt="Foto Reviewer">
+                        </div>
+                        <div class="review-content">
+                            <h2>John Smith</h2>
+                            <p>"Produk sesuai dengan deskripsi. Harga terjangkau. Akan beli lagi."</p>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="reviewer-photo">
+                            <img src="uni.jpg" alt="Foto Reviewer">
+                        </div>
+                        <div class="review-content">
+                            <h2>Sarah Johnson</h2>
+                            <p>"Pelayanan pelanggan sangat membantu dan ramah. Sangat direkomendasikan!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="script.js"></script>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollToPlugin.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var $window = $(window);
+    var $document = $(document);
+    var $navButtons = $("nav a").filter("[href^='#']");
+    var $navGoPrev = $(".go-prev");
+    var $navGoNext = $(".go-next");
+    var $slidesContainer = $(".slides-container");
+    var $slides = $(".slide");
+    var $currentSlide = $slides.first();
+    var isAnimating = false;
+    var pageHeight = $window.innerHeight();
+    var keyCodes = {
+        UP  : 38,
+        DOWN: 40
+    }
+
+    goToSlide($currentSlide);
+    $window.on("resize", onResize).resize();
+    $window.on("mousewheel DOMMouseScroll", onMouseWheel);
+    $document.on("keydown", onKeyDown);
+    $navButtons.on("click", onNavButtonClick);
+    $navGoPrev.on("click", goToPrevSlide);
+    $navGoNext.on("click", goToNextSlide);
+
+    function onNavButtonClick(event) {
+        // The clicked button
+        var $button = $(this);
+
+        // The slide the button points to
+        var $slide = $($button.attr("href"));
+
+        // If the slide exists, we go to it
+        if ($slide.length) {
+            goToSlide($slide);
+            event.preventDefault();
+        }
+    }
+
+    function onKeyDown(event) {
+        var PRESSED_KEY = event.keyCode;
+
+        if (PRESSED_KEY == keyCodes.UP) {
+            goToPrevSlide();
+            event.preventDefault();
+        } else if (PRESSED_KEY == keyCodes.DOWN) {
+            goToNextSlide();
+            event.preventDefault();
+        }
+    }
+
+    function onMouseWheel(event) {
+        var delta = event.originalEvent.wheelDelta / 30 || -event.originalEvent.detail;
+
+        if (delta < -1) {
+            goToNextSlide();
+        } else if (delta > 1) {
+            goToPrevSlide();
+        }
+
+        event.preventDefault();
+    }
+
+    function goToPrevSlide() {
+        if ($currentSlide.prev().length) {
+            goToSlide($currentSlide.prev());
+        }
+    }
+
+    function goToNextSlide() {
+        if ($currentSlide.next().length) {
+            goToSlide($currentSlide.next());
+        }
+    }
+
+    function goToSlide($slide) {
+        if (!isAnimating && $slide.length) {
+            isAnimating = true;
+            $currentSlide = $slide;
+
+            gsap.to($slidesContainer, {scrollTo: {y: pageHeight * $currentSlide.index()}, duration: 1, onComplete: onSlideChangeEnd});
+            gsap.to($navButtons.filter(".active"), {className: "-=active", duration: 0.5});
+            gsap.to($navButtons.filter("[href='#" + $currentSlide.attr("id") + "']"), {className: "+=active", duration: 0.5});
+        }
+    }
+
+    function onSlideChangeEnd() {
+        isAnimating = false;
+    }
+
+    function onResize(event) {
+        var newPageHeight = $window.innerHeight();
+        if (pageHeight !== newPageHeight) {
+            pageHeight = newPageHeight;
+
+            gsap.set([$slidesContainer, $slides], {height: pageHeight + "px"});
+            gsap.set($slidesContainer, {scrollTo: {y: pageHeight * $currentSlide.index()}});
+        }
+    }
+</script>
+</body>
+</html>
