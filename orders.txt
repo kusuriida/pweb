@@ -1,0 +1,8 @@
+Email: john.doe@example.com
+Nomor Telepon: 085753012382
+Produk: Product 1
+=====================
+Email: hilmi00prastowo@gmail.com
+Nomor Telepon: 085753012382
+Produk: Product 2, Product 5
+=====================
