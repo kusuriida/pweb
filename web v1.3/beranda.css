@@ -1,0 +1,446 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --index: calc(1vw + 1vh);
+    --transition: cubic-bezier(.1, .7, 0, 1);
+}
+
+body{
+    background-color: #ghostwhite;
+}
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.items{
+    display: flex;
+    gap: 0.4rem;
+    perspective: calc(var(--index) * 35);
+}
+
+.item{
+    width: calc(var(--index) * 3);
+    height: calc(var(--index) * 12);
+    background-color: #222;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    filter: grayscale(1) brightness(.5);
+    transition: transform 1.25s var(--transition), filter 3s var(--transition), width 1.25s var(--transition);
+    will-change: transform, filter, rotateY, width;
+}
+
+.item::before, .item::after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    right: calc(var(--index) * -1);
+}
+
+.item::after{
+    left: calc(var(--index) * -1);
+}
+
+.items .item:hover{
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 10));
+}
+
+/*Right*/
+
+.items .item:hover + *{
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 8.5)) rotateY(35deg);
+    z-index: -1;
+}
+
+.items .item:hover + * + *{
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 5.6)) rotateY(40deg);
+    z-index: -2;
+}
+
+.items .item:hover + * + * + *{
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 2.5)) rotateY(30deg);
+    z-index: -3;
+}
+
+.items .item:hover + * + * + * + *{
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * .6)) rotateY(15deg);
+    z-index: -4;
+}
+
+
+/*Left*/
+
+.items .item:has( + :hover){
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 8.5)) rotateY(-35deg);
+}
+
+.items .item:has( + * + :hover){
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 5.6)) rotateY(-40deg);
+}
+
+.items .item:has( + * + * + :hover){
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * 2.5)) rotateY(-30deg);
+}
+
+.items .item:has( + * + * + * + :hover){
+    filter: inherit;
+    transform: translateZ(calc(var(--index) * .6)) rotateY(-15deg);
+}
+
+.items .item:active, .items .item:focus {
+  width: 28vw;
+  filter: inherit;
+  z-index: 100;
+  transform: translateZ(calc(var(--index) * 10));
+    margin: 0 .45vw;
+}
+
+body, div, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.0625em;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+    margin-top: 30px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+#back-to-tutorial {
+    margin-left: 100px;
+}
+
+nav a {
+    position: relative;
+    top: 0;
+    padding: 10px 20px;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    color: #83C78E;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+nav a.active {
+    top: -4px;
+    background-color: #69C773;
+    color: #FFFFFF;
+    -webkit-box-shadow: 0 4px 0 0 #51a65f;
+    -moz-box-shadow: 0 4px 0 0 #51a65f;
+    box-shadow: 0 4px 0 0 #51a65f;
+}
+
+.slides-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide .centered {
+    width: 60%;
+    margin: 200px auto 0;
+}
+
+.slide .centered h1 {
+    text-align: center;
+}
+
+.slide .centered p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#slide-1 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+#slide-1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(to right, #070F2B, transparent);
+}
+
+#slide-1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: url('fotoberanda/1.1.png') no-repeat center / cover;
+    z-index: -1;
+}
+
+#slide-2 {
+ background: linear-gradient(to right, #1B1A55, #535C91) no-repeat 0 0 / cover;
+}
+
+#slide-3 {
+ background: linear-gradient(to right, #535C91, #9290C3) no-repeat 0 0 / cover;
+}
+
+#slide-3 .order-container {
+    width: 50%;
+    height: 100vh; /* Cover full viewport height */
+    background-color: rgba(11, 28, 111, 0.8);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute; /* Position the container */
+    top: 0;
+    right: 0; /* Align to the right */
+}
+
+#slide-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; /* Align items to the right */
+    background: linear-gradient(to right, #535C91, #9290C3) no-repeat 0 0 / cover;
+    padding: 20px;
+    position: relative;
+}
+
+#slide-3 .image-container {
+    display: none; /* Hide the image container if not needed */
+}
+
+#slide-3 .order-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+#slide-3 .order-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+#slide-3 .order-container form fieldset {
+    margin-bottom: 20px;
+}
+
+#slide-3 .order-container form fieldset legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#slide-3 .order-container form label {
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+#slide-3 .order-container form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#slide-3 .order-container form input[type="text"],
+#slide-3 .order-container form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #071635;
+    border-radius: 5px;
+}
+
+#slide-3 .order-container form button[type="submit"] {
+    padding: 10px;
+    background-color: #5a53df;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#slide-3 .order-container form button[type="submit"]:hover {
+    background-color: #51a65f;
+}
+
+#slide-3 .tooltip {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 55%;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+    font-size: 0.9em;
+}
+
+#slide-3 .order-container form label:hover .tooltip {
+    display: block;
+}
+
+#slide-3 .order-container form label:hover::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: rotate(45deg);
+    z-index: 9;
+}
+
+
+#slide-4 {
+ background: linear-gradient(to right, #9290C3, #535C91) no-repeat 0 0 / cover;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f4f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Menghindari scroll horizontal pada body */
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px; /* Lebar maksimum kontainer */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.reviews {
+    display: flex;
+    overflow-x: scroll; /* Membuat scroll horizontal */
+    gap: 20px; /* Jarak antar kotak review */
+    padding-bottom: 20px; /* Menambahkan padding-bottom agar tidak terpotong */
+}
+
+.review {
+    min-width: 250px; /* Lebar minimum kotak review */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.reviewer-photo {
+    width: 80px; /* Ukuran foto reviewer */
+    height: 80px;
+    overflow: hidden;
+    border-radius: 50%; /* Agar foto reviewer menjadi bulat */
+    margin-bottom: 10px;
+}
+
+.reviewer-photo img {
+    width: 100%;
+    height: 100%; /* Mengisi kontainer sepenuhnya */
+    object-fit: cover; /* Memastikan gambar sesuai dengan kontainer bulat */
+}
+
+.review-content {
+    text-align: center;
+}
+
+.review h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.review p {
+    margin: 0;
+    color: #555;
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+.go-prev, .go-next {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+ h1 {
+            color: #000328;
+            font-family: 'arial';
+            text-align: center;
+}

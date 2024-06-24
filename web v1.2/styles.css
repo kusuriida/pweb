@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f4f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Menghindari scroll horizontal pada body */
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px; /* Lebar maksimum kontainer */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.reviews {
+    display: flex;
+    overflow-x: scroll; /* Membuat scroll horizontal */
+    gap: 20px; /* Jarak antar kotak review */
+    padding-bottom: 20px; /* Menambahkan padding-bottom agar tidak terpotong */
+}
+
+.review {
+    min-width: 250px; /* Lebar minimum kotak review */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.reviewer-photo {
+    width: 80px; /* Ukuran foto reviewer */
+    height: 80px;
+    overflow: hidden;
+    border-radius: 50%; /* Agar foto reviewer menjadi bulat */
+    margin-bottom: 10px;
+}
+
+.reviewer-photo img {
+    width: 100%;
+    height: 100%; /* Mengisi kontainer sepenuhnya */
+    object-fit: cover; /* Memastikan gambar sesuai dengan kontainer bulat */
+}
+
+.review-content {
+    text-align: center;
+}
+
+.review h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.review p {
+    margin: 0;
+    color: #555;
+    font-size: 1em;
+    line-height: 1.4em;
+}
