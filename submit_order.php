@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ];
 
     $orderText = "Nama: " . $order['name'] . "\n";
-    $orderText = "Email: " . $order['email'] . "\n";
+    $orderText .= "Email: " . $order['email'] . "\n";
     $orderText .= "Nomor Telepon: " . $order['phone'] . "\n";
     $orderText .= "Produk: " . $order['products'] . "\n";
     $orderText .= "=====================\n";
@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file = 'orders.txt';
     file_put_contents($file, $orderText, FILE_APPEND);
 
-    echo "Order berhasil disimpan.";
+    // Mengarahkan pengguna kembali ke halaman beranda.html
+    header("Location: beranda.html");
+    exit;
 }
 ?>

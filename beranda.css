@@ -386,3 +386,16 @@ h1 {
             border: 2px solid green;
         }
 
+    .footer {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 40px;
+            background-color: #151515;
+            margin-top: 120px;
+        }
+
+        .footer a img {
+            width: 40px;
+            height: 40px;
+        }
